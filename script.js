@@ -16,14 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Animation des projets au scroll
-    const projects = document.querySelectorAll('.project');
+    const projects = document.querySelectorAll('.project'); // Assurez-vous que ces éléments existent
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                observer.unobserve(entry.target); // Arrête d'observer une fois l'animation jouée
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1 }); // Vous pouvez ajuster ce seuil
 
     projects.forEach(project => {
         observer.observe(project);
@@ -39,14 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Gestion du menu
     const menuToggle = document.getElementById('menuToggle');
     const menu = document.getElementById('menu');
+    const closeMenu = document.getElementById('closeMenu');
 
     menuToggle.addEventListener('click', () => {
         menu.classList.toggle('visible');
         menu.classList.toggle('hidden');
     });
 
+    closeMenu.addEventListener('click', () => {
+        menu.classList.remove('visible');
+        menu.classList.add('hidden');
+    });
+
+    // Animation des éléments de la timeline
     const timelineItems = document.querySelectorAll('.timeline-item');
 
     const showTimelineItems = () => {
