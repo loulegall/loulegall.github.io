@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.classList.add('hidden');
     });
 
-
     window.addEventListener("scroll", function() {
         const title = document.querySelector('.main-title');
         const scrollPosition = window.scrollY;

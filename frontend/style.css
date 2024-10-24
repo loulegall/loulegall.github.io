@@ -82,12 +82,19 @@ nav ul li a {
     text-align: right; /* Aligne la croix à droite */
 }
 
+.download-cv {
+    background: linear-gradient(90deg, #ff0080, #ff8c00, #ffe100); /* Dégradé de couleurs avec jaune */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
 /* Sections principales */
-main {
-    padding-top: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+
+.main-container {
+    background: linear-gradient(90deg, #ff0080, #ff8c00, #ffe100); /* Dégradé de couleurs avec jaune */
+    padding: 5vw 8vw; /* Ajout de marges responsives à droite et à gauche */
 }
 
 .main-title {
@@ -109,7 +116,7 @@ main {
 .chevron {
     width: 25px; /* Largeur du chevron */
     height: 25px; /* Hauteur du chevron */
-    border: solid black; /* Couleur et style du chevron */
+    border: solid  #333; /* Couleur et style du chevron */
     border-width: 0 3px 3px 0; /* Forme du chevron */
     display: inline-block;
     padding: 3px;
@@ -142,7 +149,7 @@ main {
 }
 
 /* Sections */
-section {
+section{
     background-color: #fff;
     padding: 2rem;
     border-radius: 10px;
@@ -202,15 +209,20 @@ section {
 
 /* Pied de page */
 footer {
-    text-align: center;
-    padding: 1rem;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
     background: linear-gradient(90deg, #ff0080, #ff8c00, #ffe100); /* Dégradé de couleurs */
     color: white; /* Couleur du texte */
-    margin-top: 2rem; /* Espace au-dessus du footer */
 }
 
-footer p {
-    margin: 0.5rem 0; /* Espacement entre les paragraphes */
+.footer-column {
+    text-align: center;
+    width: 33%;
+}
+
+.footer-icons a {
+    margin-left: 10px;
 }
 
 /* Responsive design */
@@ -230,6 +242,7 @@ footer p {
 .about-image {
     flex: 1; /* Prend 1 part de l'espace disponible */
     max-width: 200px; /* Largeur maximale pour l'image */
+    margin-right: 50px;
 }
 
 .about-image img {
@@ -419,4 +432,3 @@ button:hover {
     width: 2px;
     background: #ccc;
 }
-

@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bowlby+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
     <header>
@@ -22,40 +23,42 @@
     </header>
 
     <nav id="menu" class="hidden">
-        <div class="close-icon" id="closeMenu">&times;</div> <!-- Ajout de la croix -->
+        <div class="close-icon" id="closeMenu">&times;</div>
         <ul>
             <li><a href="#about">À propos</a></li>
             <li><a href="#experiences">Expériences</a></li>
             <li><a href="#formations">Formations</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="cv.pdf" class="download-cv">Télécharger CV</a></li>
         </ul>
     </nav>
 
-    <main>
+    <main class="main">
         <h1 class="main-title">LOU LE GALL</h1>
         <div class="chevron"></div>
-        
+     <div class="main-container">
+
+  
         <div class="content-grid">
             <section id="about">
                 <h2>À PROPOS</h2>
                 <div class="about-container">
                     <div class="about-image">
-                        <img src="votre-photo.jpg" alt="Lou Le Gall">
+                        <img src="images/Baymax.png" alt="Lou Le Gall">
                     </div>
                     <div class="about-text">
-                        <p>Je suis un développeur passionné par la création d'applications web et mobiles. Mon objectif est de livrer des projets de qualité tout en apprenant à diriger des équipes multifonctionnelles. J'ai une expérience dans divers langages de programmation et je suis toujours à la recherche de nouveaux défis.</p>
                         <div class="contact-container">
                             <div class="contact-item">
                                 <span class="icon">📞</span>
-                                <p>Téléphone : <a href="tel:+33695880710">+33 6 95 88 07 10</a></p>
+                                <p><a href="tel:+33695880710">+33 6 95 88 07 10</a></p>
                             </div>
                             <div class="contact-item">
                                 <span class="icon">✉️</span>
-                                <p>Email : <a href="mailto:lou.le gall59@gmail.com">lou.le gall59@gmail.com</a></p>
+                                <p><a href="mailto:lou.le gall59@gmail.com">lou.le gall59@gmail.com</a></p>
                             </div>
                             <div class="contact-item">
                                 <span class="icon">🔗</span>
-                                <p>LinkedIn : <a href="https://www.linkedin.com/in/lou-le-gall-9017551a3/" target="_blank">Profil LinkedIn</a></p>
+                                <p><a href="https://www.linkedin.com/in/lou-le-gall-9017551a3/" target="_blank">Profil LinkedIn</a></p>
                             </div>
                         </div>
                     </div>
@@ -153,13 +156,22 @@
                     </div>
                     <button type="submit">Envoyer</button>
                 </form>
+                <div id="form-response"></div> <!-- Ajout d'un élément pour afficher la réponse -->
             </section>
         </div>
+    </div> 
     </main>
 
     <footer>
-        <p>2024 Lou Le Gall. Tous droits réservés.</p>
-        <p>Développé avec ❤️ par Lou Le Gall</p>
+        <div class="footer-column"></div>
+        <div class="footer-column">
+            <p>Développé avec ❤️ par Lou Le Gall</p>
+            <p>Hébergé par GitHub</p>
+        </div>
+        <div class="footer-column footer-icons">
+            <a href="https://github.com/votreprofil" target="_blank"><img src="images/github-icon.png" alt="GitHub"></a>
+            <a href="https://www.linkedin.com/in/votreprofil" target="_blank"><img src="images/linkedin-icon.png" alt="LinkedIn"></a>
+        </div>
     </footer>
 </body>
 </html>
