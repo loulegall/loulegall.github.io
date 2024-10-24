@@ -55,23 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.classList.add('hidden');
     });
 
-    // Animation des éléments de la timeline
-    const timelineItems = document.querySelectorAll('.timeline-item');
 
-    const showTimelineItems = () => {
-        const scrollY = window.scrollY + window.innerHeight;
-
-        timelineItems.forEach(item => {
-            const itemTop = item.getBoundingClientRect().top + window.scrollY;
-
-            if (scrollY > itemTop + 100) {
-                item.style.opacity = 1;
-                item.style.transform = 'translateY(0)';
-                item.style.animation = 'fadeIn 0.5s forwards'; // Ajout de l'animation
-            }
-        });
-    };
-
-    window.addEventListener('scroll', showTimelineItems);
-    showTimelineItems(); // Pour afficher les éléments au chargement
+    window.addEventListener("scroll", function() {
+        const title = document.querySelector('.main-title');
+        const scrollPosition = window.scrollY;
+    
+        // Multiplie par un facteur plus grand pour augmenter la sensibilité de la rotation
+        const rotationAngle = scrollPosition * 1; // Plus le facteur est grand, plus la rotation est rapide
+    
+        // Modifie le dégradé avec un angle dynamique
+        title.style.background = `linear-gradient(${90 + rotationAngle}deg, #ff0080, #ff8c00, #ffe100)`;
+    
+        // Réapplique les styles pour Safari et les navigateurs compatibles
+        title.style.webkitBackgroundClip = 'text';
+        title.style.backgroundClip = 'text';
+        title.style.webkitTextFillColor = 'transparent';
+      });    
 });

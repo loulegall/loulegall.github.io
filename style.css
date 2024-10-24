@@ -107,8 +107,8 @@ main {
 }
 
 .chevron {
-    width: 30px; /* Largeur du chevron */
-    height: 30px; /* Hauteur du chevron */
+    width: 25px; /* Largeur du chevron */
+    height: 25px; /* Hauteur du chevron */
     border: solid black; /* Couleur et style du chevron */
     border-width: 0 3px 3px 0; /* Forme du chevron */
     display: inline-block;
