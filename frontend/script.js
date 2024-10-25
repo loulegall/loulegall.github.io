@@ -3,18 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const title = document.querySelector('h1');
     title.classList.add('animate__animated', 'animate__fadeInDown');
 
-    // Animation des compétences
-    const skills = document.querySelectorAll('#skills li');
-    skills.forEach((skill, index) => {
-        skill.style.opacity = '0';
-        skill.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-            skill.style.transition = 'opacity 0.5s, transform 0.5s';
-            skill.style.opacity = '1';
-            skill.style.transform = 'translateY(0)';
-        }, 200 * index);
-    });
-
     // Animation des projets au scroll
     const projects = document.querySelectorAll('.project'); // Assurez-vous que ces éléments existent
     const observer = new IntersectionObserver((entries) => {
@@ -69,5 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
         title.style.webkitBackgroundClip = 'text';
         title.style.backgroundClip = 'text';
         title.style.webkitTextFillColor = 'transparent';
-      });    
+    }); 
+      
 });
