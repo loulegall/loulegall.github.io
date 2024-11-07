@@ -160,7 +160,7 @@ nav ul li a {
 .experience-item {
     margin-bottom: 1.5rem;
     padding: 1rem;
-    border-left: 4px solid #007bff;
+    border-left: 4px solid #ffe100;
     background-color: #f9f9f9;
 }
 
@@ -173,21 +173,17 @@ nav ul li a {
 .contact-container {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; /* Espace entre les éléments de contact */
+    gap: 15px;
 }
 
 .contact-item {
     display: flex;
     align-items: center; /* Aligne l'icône et le texte */
-    background-color: #ffffff; /* Couleur de fond pour chaque élément */
-    padding: 1rem;
-    border-radius: 8px; /* Coins arrondis */
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
     transition: transform 0.3s; /* Effet de transition */
 }
 
 .contact-item:hover {
-    transform: translateY(-3px); /* Légère élévation au survol */
+    transform: scale(1.05);
 }
 
 .icon {
@@ -196,7 +192,7 @@ nav ul li a {
 }
 
 .contact-item a {
-    color: #007bff; /* Couleur du lien */
+    color: #333; /* Couleur du lien */
     text-decoration: none; /* Pas de soulignement */
 }
 
@@ -232,14 +228,42 @@ footer {
 /* Styles pour la section À propos */
 .about-container {
     display: flex;
-    align-items: center;
-    gap: 1rem; /* Espace entre l'image et le texte */
+    flex-direction: column; /* Changer pour une disposition en colonne */
+    gap: 2rem; /* Espace entre le titre et les colonnes */
 }
 
+/* Styles pour le titre */
+.about-header {
+    font-size: 2rem; /* Taille du titre */
+    margin-bottom: 1rem; /* Espace sous le titre */
+    text-align: center; /* Centre le texte au milieu de la page */
+}
+
+/* Ajustement des colonnes pour qu'elles s'affichent côte à côte */
+.about-grid {
+    display: grid; /* Utiliser une grille pour la disposition */
+    grid-template-columns: 1fr; /* Une seule colonne pour le header */
+    gap: 2rem; /* Espace entre les colonnes */
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+/* Ajout d'un style pour about-columns */
+.about-columns {
+    display: grid; /* Utiliser une grille pour la disposition */
+    grid-template-columns: 1fr 1fr; /* Deux colonnes de taille égale */
+    gap: 2rem; /* Espace entre les colonnes */
+    align-items: center;
+}
+
+/* Styles pour l'image */
 .about-image {
     flex: 1; /* Prend 1 part de l'espace disponible */
     max-width: 200px; /* Largeur maximale pour l'image */
-    margin-right: 50px;
+    margin: 0 auto;
 }
 
 .about-image img {
@@ -250,6 +274,7 @@ footer {
 
 .about-text {
     flex: 2; /* Prend 2 parts de l'espace disponible */
+    justify-content: center;
 }
 
 /* Styles pour le formulaire de contact */
@@ -420,4 +445,24 @@ button:hover {
     border-left: 2px solid #ccc; /* Ligne de la timeline */
 }
 
+/* Ajout de styles pour les compétences */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espace entre les cartes de compétences */
+    justify-content: center;
+    margin-top: 2rem;
+}
 
+.skill-card {
+    background-color: #333; /* Couleur de fond des cartes */
+    color: white; /* Couleur de la police */
+    padding: 10px; /* Espacement interne */
+    border-radius: 50px; /* Coins plus arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    transition: transform 0.3s; /* Effet de transition */
+}
+
+.skill-card:hover {
+    transform: scale(1.05); /* Effet de zoom au survol */
+}
