@@ -28,6 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Telechargement du CV
+    document.getElementById('downloadCv').addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut
+        const link = document.createElement('a');
+        link.href = 'cv.pdf'; // Chemin vers le fichier
+        link.download = 'cv.pdf'; // Nom du fichier à télécharger
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+
     // Gestion du menu
     const menuToggle = document.getElementById('menuToggle');
     const menu = document.getElementById('menu');
