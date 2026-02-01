@@ -76,6 +76,17 @@ function initQuizLogic() {
     const quizDialog = document.getElementById('quizDialog');
     const openQuizBtn = document.getElementById('openQuiz');
     const closeQuizBtn = document.getElementById('closeQuiz');
+    
+    // Vérifier que les éléments existent
+    if (!quizDialog) {
+        console.error('Element quizDialog non trouvé');
+        return;
+    }
+    
+    if (!openQuizBtn) {
+        console.error('Bouton openQuiz non trouvé');
+        return;
+    }
     const quizQuestion = document.getElementById('quizQuestion');
     const quizAnswers = document.getElementById('quizAnswers');
     const quizResult = document.getElementById('quizResult');
@@ -190,38 +201,52 @@ function initQuizLogic() {
         progressFill.style.width = '100%';
     }
 
-    if (openQuizBtn && quizDialog) {
-        openQuizBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Vérifier si showModal est supporté
-            try {
-                if (typeof quizDialog.showModal === 'function') {
-                    quizDialog.showModal();
-                    document.body.classList.add('quiz-open');
-                } else {
-                    // Fallback pour les navigateurs qui ne supportent pas showModal
-                    quizDialog.setAttribute('open', '');
-                    quizDialog.classList.add('open');
-                    quizDialog.style.display = 'block';
-                    document.body.classList.add('quiz-open');
-                    document.body.style.overflow = 'hidden'; // Empêche le scroll du body
-                }
-            } catch (error) {
-                // Si showModal échoue, utiliser le fallback
-                console.warn('showModal non supporté, utilisation du fallback:', error);
+    // Ajouter l'événement au bouton d'ouverture
+    openQuizBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        console.log('Bouton quiz cliqué, ouverture du dialog...');
+        
+        // Vérifier si showModal est supporté
+        try {
+            if (typeof quizDialog.showModal === 'function') {
+                quizDialog.showModal();
+                document.body.classList.add('quiz-open');
+                console.log('Dialog ouvert avec showModal()');
+            } else {
+                // Fallback pour les navigateurs qui ne supportent pas showModal
                 quizDialog.setAttribute('open', '');
                 quizDialog.classList.add('open');
                 quizDialog.style.display = 'block';
+                quizDialog.style.visibility = 'visible';
+                quizDialog.style.opacity = '1';
                 document.body.classList.add('quiz-open');
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden'; // Empêche le scroll du body
+                console.log('Dialog ouvert avec fallback');
             }
-            initQuiz();
-        });
-    }
+        } catch (error) {
+            // Si showModal échoue, utiliser le fallback
+            console.warn('showModal non supporté, utilisation du fallback:', error);
+            quizDialog.setAttribute('open', '');
+            quizDialog.classList.add('open');
+            quizDialog.style.display = 'block';
+            quizDialog.style.visibility = 'visible';
+            quizDialog.style.opacity = '1';
+            document.body.classList.add('quiz-open');
+            document.body.style.overflow = 'hidden';
+        }
+        initQuiz();
+    });
+    
+    // Ajouter aussi l'événement touchstart pour mobile
+    openQuizBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        openQuizBtn.click();
+    }, { passive: false });
 
-    if (closeQuizBtn && quizDialog) {
+    // Ajouter l'événement au bouton de fermeture
+    if (closeQuizBtn) {
         closeQuizBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -235,6 +260,8 @@ function initQuizLogic() {
                     quizDialog.removeAttribute('open');
                     quizDialog.classList.remove('open');
                     quizDialog.style.display = 'none';
+                    quizDialog.style.visibility = 'hidden';
+                    quizDialog.style.opacity = '0';
                     document.body.classList.remove('quiz-open');
                     document.body.style.overflow = ''; // Réactive le scroll du body
                 }
@@ -244,10 +271,18 @@ function initQuizLogic() {
                 quizDialog.removeAttribute('open');
                 quizDialog.classList.remove('open');
                 quizDialog.style.display = 'none';
+                quizDialog.style.visibility = 'hidden';
+                quizDialog.style.opacity = '0';
                 document.body.classList.remove('quiz-open');
                 document.body.style.overflow = '';
             }
         });
+        
+        // Ajouter aussi l'événement touchstart pour mobile
+        closeQuizBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            closeQuizBtn.click();
+        }, { passive: false });
     }
 
     const currentSiteData = window.siteData || {};
