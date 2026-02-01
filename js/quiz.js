@@ -191,15 +191,62 @@ function initQuizLogic() {
     }
 
     if (openQuizBtn && quizDialog) {
-        openQuizBtn.addEventListener('click', () => {
-            quizDialog.showModal();
+        openQuizBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Vérifier si showModal est supporté
+            try {
+                if (typeof quizDialog.showModal === 'function') {
+                    quizDialog.showModal();
+                    document.body.classList.add('quiz-open');
+                } else {
+                    // Fallback pour les navigateurs qui ne supportent pas showModal
+                    quizDialog.setAttribute('open', '');
+                    quizDialog.classList.add('open');
+                    quizDialog.style.display = 'block';
+                    document.body.classList.add('quiz-open');
+                    document.body.style.overflow = 'hidden'; // Empêche le scroll du body
+                }
+            } catch (error) {
+                // Si showModal échoue, utiliser le fallback
+                console.warn('showModal non supporté, utilisation du fallback:', error);
+                quizDialog.setAttribute('open', '');
+                quizDialog.classList.add('open');
+                quizDialog.style.display = 'block';
+                document.body.classList.add('quiz-open');
+                document.body.style.overflow = 'hidden';
+            }
             initQuiz();
         });
     }
 
     if (closeQuizBtn && quizDialog) {
-        closeQuizBtn.addEventListener('click', () => {
-            quizDialog.close();
+        closeQuizBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            try {
+                if (typeof quizDialog.close === 'function') {
+                    quizDialog.close();
+                    document.body.classList.remove('quiz-open');
+                } else {
+                    // Fallback pour les navigateurs qui ne supportent pas close()
+                    quizDialog.removeAttribute('open');
+                    quizDialog.classList.remove('open');
+                    quizDialog.style.display = 'none';
+                    document.body.classList.remove('quiz-open');
+                    document.body.style.overflow = ''; // Réactive le scroll du body
+                }
+            } catch (error) {
+                // Si close() échoue, utiliser le fallback
+                console.warn('close() non supporté, utilisation du fallback:', error);
+                quizDialog.removeAttribute('open');
+                quizDialog.classList.remove('open');
+                quizDialog.style.display = 'none';
+                document.body.classList.remove('quiz-open');
+                document.body.style.overflow = '';
+            }
         });
     }
 
@@ -229,7 +276,56 @@ function initQuizLogic() {
     if (quizDialog) {
         quizDialog.addEventListener('click', (e) => {
             if (e.target === quizDialog) {
-                quizDialog.close();
+                try {
+                    if (typeof quizDialog.close === 'function') {
+                        quizDialog.close();
+                        document.body.classList.remove('quiz-open');
+                    } else {
+                        quizDialog.removeAttribute('open');
+                        quizDialog.classList.remove('open');
+                        quizDialog.style.display = 'none';
+                        document.body.classList.remove('quiz-open');
+                        document.body.style.overflow = '';
+                    }
+                } catch (error) {
+                    quizDialog.removeAttribute('open');
+                    quizDialog.classList.remove('open');
+                    quizDialog.style.display = 'none';
+                    document.body.classList.remove('quiz-open');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+        
+        // Empêcher la fermeture en cliquant à l'intérieur du conteneur
+        const quizContainer = quizDialog.querySelector('.quiz-container');
+        if (quizContainer) {
+            quizContainer.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+        
+        // Gérer la touche Escape pour fermer le dialog
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && (quizDialog.hasAttribute('open') || quizDialog.classList.contains('open'))) {
+                try {
+                    if (typeof quizDialog.close === 'function') {
+                        quizDialog.close();
+                        document.body.classList.remove('quiz-open');
+                    } else {
+                        quizDialog.removeAttribute('open');
+                        quizDialog.classList.remove('open');
+                        quizDialog.style.display = 'none';
+                        document.body.classList.remove('quiz-open');
+                        document.body.style.overflow = '';
+                    }
+                } catch (error) {
+                    quizDialog.removeAttribute('open');
+                    quizDialog.classList.remove('open');
+                    quizDialog.style.display = 'none';
+                    document.body.classList.remove('quiz-open');
+                    document.body.style.overflow = '';
+                }
             }
         });
     }
