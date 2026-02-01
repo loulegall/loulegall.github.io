@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             downloadCvLink.addEventListener('click', function(event) {
                 event.preventDefault();
                 const link = document.createElement('a');
-                link.href = 'cv.pdf';
+                link.href = 'assets/documents/cv.pdf';
                 link.download = 'cv.pdf';
                 document.body.appendChild(link);
                 link.click();

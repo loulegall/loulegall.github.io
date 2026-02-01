@@ -28,7 +28,7 @@ async function loadContent() {
         currentLanguage = window.currentLanguage || localStorage.getItem('language') || 'fr';
         
         // Charger le fichier JSON selon la langue
-        const dataFile = currentLanguage === 'en' ? 'data-en.json' : 'data.json';
+        const dataFile = currentLanguage === 'en' ? 'data/data-en.json' : 'data/data.json';
         const response = await fetch(dataFile, {
             cache: 'no-cache',
             headers: {
@@ -99,7 +99,7 @@ async function loadLocalData() {
     // Sinon, charger le script data-loader.js
     return new Promise((resolve, reject) => {
         // Vérifier si le script est déjà présent dans le DOM
-        const existingScript = document.querySelector('script[src="data-loader.js"]');
+        const existingScript = document.querySelector('script[src="js/data-loader.js"]');
         if (existingScript) {
             // Le script est déjà chargé, attendre un peu et vérifier les données
             setTimeout(() => {
@@ -132,7 +132,7 @@ async function loadLocalData() {
         }
         
         const script = document.createElement('script');
-        script.src = 'data-loader.js';
+        script.src = 'js/data-loader.js';
         script.onload = () => {
             console.log('data-loader.js chargé avec succès');
             // Attendre un peu pour que les données soient disponibles
@@ -163,7 +163,7 @@ function loadInlineData() {
     console.log('Chargement des données depuis data-loader.js...');
     // Charger le script data-loader.js qui contient les données
     const script = document.createElement('script');
-    script.src = 'data-loader.js';
+    script.src = 'js/data-loader.js';
     script.onload = () => {
         console.log('data-loader.js chargé');
         if (window.siteData) {

@@ -58,17 +58,7 @@ header {
     transform: scale(0.95);
 }
 
-@media (max-width: 768px) {
-    .language-toggle {
-        position: relative;
-    }
-    
-    .lang-button {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-        min-width: 45px;
-    }
-}
+/* Media queries pour le responsive */
 
 nav {
     position: fixed;
@@ -157,6 +147,7 @@ nav ul li a:hover {
 .main-container {
     background: linear-gradient(90deg, #ff0080, #ff8c00, #ffe100); /* Dégradé de couleurs avec jaune */
     padding: 5vw 10vw; /* Ajout de marges responsives à droite et à gauche */
+    min-height: 100vh;
 }
 
 .main-title {
@@ -183,13 +174,13 @@ nav ul li a:hover {
     border-width: 0 3px 3px 0; /* Forme du chevron */
     display: inline-block;
     padding: 3px;
-    transform: rotate(45deg); /* Rotation pour former un chevron */
     margin: 20px auto; /* Centrer le chevron */
     animation: bounce 1s infinite; /* Animation de rebond */
     position: absolute; /* Positionnement absolu */
     bottom: 20px; /* Positionner le chevron à 20px du bas */
     left: 50%; /* Centrer horizontalement */
     transform: translateX(-50%) rotate(45deg); /* Centrer et faire pivoter */
+    z-index: 10; /* S'assurer qu'il est visible */
 }
 
 @keyframes bounce {
@@ -202,6 +193,13 @@ nav ul li a:hover {
     60% {
         transform: translateY(-5px) translateX(-50%) rotate(45deg);
     }
+}
+
+/* Assurer que toutes les images sont responsives */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Grille de contenu */
@@ -276,6 +274,13 @@ footer {
 
 .footer-icons a {
     margin-left: 10px;
+    display: inline-block;
+}
+
+.footer-icons img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Animations au scroll */
@@ -294,8 +299,38 @@ footer {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* Responsive design */
+/* Responsive design - Tablettes et mobiles */
 @media (max-width: 768px) {
+    /* Header et navigation */
+    header {
+        padding: 0.75rem;
+        gap: 0.75rem;
+    }
+    
+    .language-toggle {
+        position: relative;
+    }
+    
+    .lang-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        min-width: 45px;
+    }
+    
+    nav {
+        width: 100%;
+    }
+    
+    nav ul li a {
+        font-size: 1rem;
+    }
+    
+    .download-cv {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+    }
+    
+    /* Contenu principal */
     .content-grid {
         grid-template-columns: 1fr;
     }
@@ -315,12 +350,17 @@ footer {
         letter-spacing: 1px;
     }
     
+    /* Section À propos */
     .about-grid {
         padding: 1.5rem;
     }
     
     .about-image {
         max-width: 150px;
+    }
+    
+    .about-columns {
+        grid-template-columns: 1fr;
     }
     
     .contact-container {
@@ -335,6 +375,7 @@ footer {
         font-size: 0.9rem;
     }
     
+    /* Quiz */
     .quiz-button {
         font-size: 1rem;
         padding: 1.2rem 2rem;
@@ -394,10 +435,7 @@ footer {
         font-size: 1rem;
     }
     
-    .about-columns {
-        grid-template-columns: 1fr;
-    }
-    
+    /* Statistiques */
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
@@ -415,6 +453,7 @@ footer {
         font-size: 0.85rem;
     }
     
+    /* Projets */
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -441,6 +480,7 @@ footer {
         padding: 0.3rem 0.8rem;
     }
     
+    /* Formations */
     .formations-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -467,6 +507,7 @@ footer {
         font-size: 0.9rem;
     }
     
+    /* Compétences */
     .skills-container {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -491,6 +532,7 @@ footer {
         font-size: 0.9rem;
     }
     
+    /* Expériences */
     .timeline-item {
         padding-left: 50px;
     }
@@ -530,6 +572,7 @@ footer {
         padding: 0.3rem 0.8rem;
     }
     
+    /* Contact */
     #contact {
         padding: 2rem 1rem;
     }
@@ -549,6 +592,7 @@ footer {
         font-size: 0.9rem;
     }
     
+    /* Footer */
     footer {
         flex-direction: column;
         padding: 2rem 1rem;
@@ -564,18 +608,136 @@ footer {
         justify-content: center;
         gap: 1rem;
     }
+}
+
+/* Responsive design - Très petits écrans (mobiles) */
+@media (max-width: 480px) {
+    header {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+    
+    .lang-button {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.75rem;
+        min-width: 40px;
+    }
+    
+    .main-container {
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .main-title {
+        font-size: clamp(2rem, 10vw, 6rem);
+        padding: 0 0.25rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    .about-grid {
+        padding: 1rem;
+    }
+    
+    .about-image {
+        max-width: 120px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .stat-card {
+        padding: 1.25rem 0.75rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .project-card,
+    .formation-card,
+    .skill-category,
+    .experience-card {
+        padding: 1.25rem;
+    }
+    
+    .quiz-dialog {
+        width: 98%;
+        max-width: 98%;
+    }
+    
+    .quiz-header {
+        padding: 1rem;
+    }
+    
+    .quiz-content {
+        padding: 1rem;
+    }
+    
+    .quiz-question {
+        font-size: 0.95rem;
+    }
+    
+    .answer-button {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.85rem;
+    }
+    
+    #contact {
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .contact-form {
+        padding: 0 0.5rem;
+    }
+    
+    .contact-input,
+    .contact-textarea {
+        padding: 0.7rem;
+        font-size: 16px; /* Évite le zoom sur iOS */
+    }
+    
+    .timeline-item {
+        padding-left: 40px;
+    }
+    
+    .timeline::before {
+        left: 12px;
+    }
+    
+    .timeline-marker {
+        left: 0;
+        width: 18px;
+        height: 18px;
+    }
+    
+    footer {
+        padding: 1.5rem 0.75rem;
+    }
     
     nav {
-        width: 100%;
+        padding: 1.5rem;
     }
     
     nav ul li a {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     
-    .download-cv {
-        font-size: 0.85rem;
-        padding: 8px 16px;
+    .chevron {
+        width: 20px;
+        height: 20px;
+        bottom: 15px;
+    }
+    
+    .about-image {
+        max-width: 100px;
     }
 }
 
@@ -874,6 +1036,8 @@ footer {
     width: 100%; /* S'adapte à la largeur de la case */
     height: auto; /* Garde les proportions de l'image */
     border-radius: 10px; /* Coins arrondis */
+    max-width: 100%; /* Empêche le débordement */
+    display: block; /* Évite l'espace en bas des images */
 }
 
 .about-text {
@@ -905,6 +1069,8 @@ h2 {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .form-response {
@@ -934,9 +1100,12 @@ textarea,
     border: 2px solid #e0e0e0; 
     border-radius: 10px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
-    font-size: 16px;
+    font-size: 16px; /* Évite le zoom automatique sur iOS */
     transition: all 0.3s ease;
     font-family: inherit;
+    box-sizing: border-box; /* Inclut padding et border dans la largeur */
+    -webkit-appearance: none; /* Supprime le style par défaut sur iOS */
+    appearance: none;
 }
 
 textarea,

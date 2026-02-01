@@ -18,7 +18,7 @@ const dataFr = {
     "email": "lou.le gall59@gmail.com",
     "linkedin": "https://www.linkedin.com/in/lou-le-gall-9017551a3/",
     "github": "https://github.com/loulegall",
-    "cv": "cv.pdf"
+    "cv": "assets/documents/cv.pdf"
   },
   "navigation": {
     "menu": [
@@ -28,7 +28,7 @@ const dataFr = {
       { "text": "Expériences", "href": "#experiences" },
       { "text": "Formations", "href": "#formations" },
       { "text": "Contact", "href": "#contact" },
-      { "text": "Télécharger CV", "href": "cv.pdf", "download": true }
+      { "text": "Télécharger CV", "href": "assets/documents/cv.pdf", "download": true }
     ]
   },
   "quiz": {
@@ -281,7 +281,7 @@ const dataEn = {
     "email": "lou.le gall59@gmail.com",
     "linkedin": "https://www.linkedin.com/in/lou-le-gall-9017551a3/",
     "github": "https://github.com/loulegall",
-    "cv": "cv.pdf"
+    "cv": "assets/documents/cv.pdf"
   },
   "navigation": {
     "menu": [
@@ -291,7 +291,7 @@ const dataEn = {
       { "text": "Experience", "href": "#experiences" },
       { "text": "Education", "href": "#formations" },
       { "text": "Contact", "href": "#contact" },
-      { "text": "Download CV", "href": "cv.pdf", "download": true }
+      { "text": "Download CV", "href": "assets/documents/cv.pdf", "download": true }
     ]
   },
   "quiz": {
