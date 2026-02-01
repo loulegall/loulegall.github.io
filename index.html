@@ -3,14 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lou Le Gall - Portfolio</title>
+    <title id="page-title">Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">    
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bowlby+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="content-loader.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="quiz.js" defer></script>
+    <!-- Script de secours pour le développement local -->
+    <script>
+        // Si on est en mode local et que data-loader.js existe, le charger
+        if (window.location.protocol === 'file:') {
+            const fallbackScript = document.createElement('script');
+            fallbackScript.src = 'data-loader.js';
+            fallbackScript.onload = () => {
+                console.log('data-loader.js chargé en mode local');
+            };
+            document.head.appendChild(fallbackScript);
+        }
+    </script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
@@ -25,16 +39,12 @@
     <nav id="menu" class="hidden">
         <div class="close-icon" id="closeMenu">&times;</div>
         <ul>
-            <li><a href="#about">À propos</a></li>
-            <li><a href="#experiences">Expériences</a></li>
-            <li><a href="#formations">Formations</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="cv.pdf" id="downloadCv" class="download-cv" target="_blank" download>Télécharger CV</a></li>
+            <!-- Navigation chargée dynamiquement depuis data.json -->
         </ul>
     </nav>
 
     <main class="main">
-        <h1 class="main-title">LOU LE GALL</h1>
+        <h1 class="main-title">LOU<br>LE GALL</h1>
         <div class="chevron"></div>
      <div class="main-container">
 
@@ -42,112 +52,75 @@
         <div class="content-grid">
                 <div class="about-container">
                     <div class="about-header">
-                        <p>Je suis passionnée par le développement web et l'innovation technologique. J'aime travailler sur des projets qui ont un impact positif.</p>
+                        <button class="quiz-button" id="openQuiz">
+                            <!-- Texte chargé dynamiquement -->
+                        </button>
                     </div>
+                    
+                    <!-- Dialog du Quiz sera chargé dynamiquement -->
+                    <div id="quiz-container"></div>
                     <div class="about-grid">
                         <div id="about" class="about-grid-header">
-                            <h2>À PROPOS</h2>
+                            <h2><!-- Titre chargé dynamiquement --></h2>
                         </div>
                         <div class="about-columns">
                             <div class="about-image">
                                 <img src="images/Baymax.png" alt="Lou Le Gall">
                             </div>
                             <div class="contact-container">
-                                <div class="contact-item">
-                                    <span class="icon">🖥️</span>
-                                    <p class="p-about">Ingénieur Informatique</p>
-                                </div>
-                                <div class="contact-item">
-                                    <span class="icon">📞</span>
-                                    <p class="p-about"><a href="tel:+33695880710" class="contact-link">+33 6 95 88 07 10</a></p>
-                                </div>
-                                <div class="contact-item">
-                                    <span class="icon">✉️</span>
-                                    <p class="p-about"><a href="mailto:lou.le gall59@gmail.com" class="contact-link">lou.le gall59@gmail.com</a></p>
-                                </div>
-                                <div class="contact-item">
-                                    <span class="icon">🔗</span>
-                                    <p class="p-about"><a href="https://www.linkedin.com/in/lou-le-gall-9017551a3/" target="_blank" class="contact-link">Profil LinkedIn</a></p>
-                                </div>
-                                <div class="contact-item">
-                                    <span class="icon">🐱</span>
-                                    <p class="p-about"><a href="https://github.com/loulegall" target="_blank" class="contact-link">Profil GitHub</a></p>
-                                </div>
+                                <!-- Informations de contact chargées dynamiquement -->
                             </div>   
                         </div>
                     </div>
                 </div>
                 <div class="skills-container">
-                    <div class="skill-card">Méthodes Agiles : SCRUM, Kanban</div>
-                    <div class="skill-card">Gestion de projets de groupes (E-santé)</div>
-                    <div class="skill-card">Projet entrepreneurial</div>
-                    <div class="skill-card">Pitching et communication d'entreprise</div>
-                    <div class="skill-card">Développement de produits/services innovants</div>
-                    <div class="skill-card">Business model canvas, Design Thinking</div>
-                    <div class="skill-card">Outils de gestion de projet (Trello, Notion, GitHub)</div>
-                    <div class="skill-card">Languages / Framework (HTML, CSS, Python, JavaScript, React, React Native)</div>
-                    <div class="skill-card">WordPress et Elementor</div>
-                    <div class="skill-card">Infrastructure Cloud (OpenStack, Azure, GCP), Docker, CI/CD</div>
-                    <div class="skill-card">BackEnd (REST API, BDD)</div>
+                    <!-- Compétences chargées dynamiquement -->
                 </div>
 
+            <!-- Section Statistiques -->
+            <section id="stats" class="stats-section">
+                <h2><!-- Titre chargé dynamiquement --></h2>
+                <div class="stats-grid">
+                    <!-- Statistiques chargées dynamiquement -->
+                </div>
+            </section>
+
+            <!-- Section Projets -->
+            <section id="projects" class="projects-section">
+                <h2><!-- Titre chargé dynamiquement --></h2>
+                <div class="projects-grid">
+                    <!-- Projets chargés dynamiquement -->
+                </div>
+            </section>
+
             <section id="experiences">
-                <h2>EXPÉRIENCES</h2>
-                <div class="experience-item">
-                    <strong>DÉVELOPPEUSE FRONTEND - STAGE DE FIN D'ÉTUDES</strong><br>
-                    UCC (University College Cork), Cork (Irlande) - février 2024 à juillet 2024<br>
-                    Développement d’une application mobile React native pour un projet de recherche en université en Irlande.
-                </div>
-                <div class="experience-item">
-                    <strong>DÉVELOPPEUSE - ALTERNANCE</strong><br>
-                    NextCog, Montpellier (France) - septembre 2022 à janvier 2024<br>
-                    Autonomie et responsabilité dans la gestion des tâches ainsi que dans l'initiation de nouvelles idées.
-                </div>
-                <div class="experience-item">
-                    <strong>DÉVELOPPEUSE WEB - ALTERNANCE</strong><br>
-                    Demi-Sel, Quimper (France) - septembre 2021 à septembre 2022<br>
-                    Développement agile pour répondre aux demandes des clients en matière de contenu et de fonctionnalité de site web.
-                </div>
-                <div class="experience-item">
-                    <strong>DÉVELOPPEUSE WEB - STAGE DE FIN D'ÉTUDE</strong><br>
-                    Groupe Asten, Brest (France) - avril 2021 à juin 2021<br>
-                    Création d'une interface pour le service après-vente de l'entreprise en utilisant Python et le framework Django.
+                <h2><!-- Titre chargé dynamiquement --></h2>
+                <div class="timeline">
+                    <!-- Expériences chargées dynamiquement -->
                 </div>
             </section>
 
             <section id="formations">
-                <h2>FORMATIONS</h2>
-                <div class="experience-item">
-                    <strong>Master 2 - MAE Parcours Entrepreneuriat et Innovation</strong><br>
-                    IGR IAE (École Universitaire de Management) - Rennes (France) - 2024<br>
-                    Gestion de projet, créativité, projets innovants, entrepreneuriat.
-                </div>
-                <div class="experience-item">
-                    <strong>ENSAT - Ingénieur par Apprentissage en Informatique</strong><br>
-                    ENSAT (École Nationale Supérieure des Sciences Appliquées et de Technologie) - Lannion (France) - 2021 à 2024<br>
-                    Développement web, cloud computing, science des données, IA.
-                </div>
-                <div class="experience-item">
-                    <strong>DUT - Réseaux et Télécommunications</strong><br>
-                    IUT DIJON - Auxerre (France) - 2019 à 2021<br>
-                    Formation technique en réseaux et télécommunications.
+                <h2><!-- Titre chargé dynamiquement --></h2>
+                <div class="formations-grid">
+                    <!-- Formations chargées dynamiquement -->
                 </div>
             </section>
 
             <section id="contact" class="contact-section">
-                <h2 class="contact-title">CONTACT</h2>
+                <h2 class="contact-title"><!-- Titre chargé dynamiquement --></h2>
                 <form id="contact-form" action="https://formspree.io/f/xldedzoo" method="POST" class="contact-form" aria-labelledby="contact-title">
                     <label class="contact-label" for="email">
-                        Email:
+                        <!-- Label chargé dynamiquement -->
                         <input type="email" name="email" id="email" class="contact-input" required aria-required="true" aria-describedby="emailHelp">
                     </label>
                     
                     <label class="contact-label" for="message">
-                        Message:
+                        <!-- Label chargé dynamiquement -->
                         <textarea name="message" id="message" class="contact-textarea" required aria-required="true" aria-describedby="messageHelp"></textarea>
                     </label>
                     
-                    <button type="submit" class="contact-button">Envoyer</button>
+                    <button type="submit" class="contact-button"><!-- Texte chargé dynamiquement --></button>
                 </form>
                 <div id="form-response" class="form-response" role="alert"></div>
             </section>
@@ -158,12 +131,11 @@
     <footer>
         <div class="footer-column"></div>
         <div class="footer-column">
-            <p>Développé avec ❤️ par Lou Le Gall</p>
-            <p>Hébergé par GitHub</p>
+            <!-- Footer chargé dynamiquement -->
         </div>
         <div class="footer-column footer-icons">
-            <a href="https://github.com/loulegall" target="_blank"><img src="images/github.png" alt="GitHub" style="width: 30px; height: 30px;"></a>
-            <a href="https://www.linkedin.com/in/lou-le-gall-9017551a3/" target="_blank"><img src="images/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;"></a>
+            <a href="#" id="footer-github" target="_blank"><img src="images/github.png" alt="GitHub" style="width: 30px; height: 30px;"></a>
+            <a href="#" id="footer-linkedin" target="_blank"><img src="images/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;"></a>
         </div>
     </footer>
 </body>
