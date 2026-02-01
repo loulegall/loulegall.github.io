@@ -4,10 +4,15 @@ if (!window.siteData) {
     window.siteData = null;
 }
 let siteData = window.siteData;
+// Déclarer currentLanguage dans window pour éviter les conflits avec data-loader.js
+if (!window.currentLanguage) {
+    window.currentLanguage = localStorage.getItem('language') || 'fr';
+}
+let currentLanguage = window.currentLanguage;
 
 async function loadContent() {
     try {
-        console.log('Tentative de chargement de data.json...');
+        console.log('Tentative de chargement des données...');
         
         // Vérifier si on est en mode file:// (local)
         const isLocal = window.location.protocol === 'file:';
@@ -15,12 +20,16 @@ async function loadContent() {
         if (isLocal) {
             // Pour le développement local, utiliser une approche différente
             console.warn('Mode local détecté. Utilisation d\'une solution alternative...');
-            // Essayer de charger via un script inline ou utiliser les données directement
             await loadLocalData();
             return;
         }
         
-        const response = await fetch('data.json', {
+        // Mettre à jour currentLanguage depuis window si disponible
+        currentLanguage = window.currentLanguage || localStorage.getItem('language') || 'fr';
+        
+        // Charger le fichier JSON selon la langue
+        const dataFile = currentLanguage === 'en' ? 'data-en.json' : 'data.json';
+        const response = await fetch(dataFile, {
             cache: 'no-cache',
             headers: {
                 'Content-Type': 'application/json'
@@ -43,16 +52,22 @@ async function loadContent() {
         }
         
         populateContent();
+        setupLanguageToggle();
     } catch (error) {
         console.error('Erreur lors du chargement des données:', error);
         console.error('Détails:', error.message, error.stack);
         
-        // Essayer de charger les données localement en dernier recours
-        if (error.message.includes('Failed to fetch') || error.message.includes('CORS')) {
+        // Essayer de charger les données localement en dernier recours (uniquement en mode local)
+        const isLocal = window.location.protocol === 'file:';
+        if ((error.message.includes('Failed to fetch') || error.message.includes('CORS') || error.message.includes('NetworkError')) && isLocal) {
             console.log('Tentative de chargement local...');
             await loadLocalData();
+        } else if (isLocal) {
+            // En mode local, toujours essayer data-loader.js en dernier recours
+            console.log('Tentative de chargement local en dernier recours...');
+            await loadLocalData();
         } else {
-            // Afficher un message d'erreur visible sur la page
+            // Sur GitHub Pages ou serveur, afficher un message d'erreur
             const errorDiv = document.createElement('div');
             errorDiv.style.cssText = 'position:fixed;top:0;left:0;right:0;background:red;color:white;padding:20px;z-index:9999;font-family:monospace;';
             errorDiv.innerHTML = `Erreur de chargement des données: ${error.message}. Vérifiez la console pour plus de détails.`;
@@ -61,23 +76,79 @@ async function loadContent() {
     }
 }
 
-// Fonction pour charger les données localement (solution de secours)
+// Fonction pour charger les données localement (solution de secours pour mode file://)
 async function loadLocalData() {
     console.log('Chargement local via data-loader.js...');
-    // Charger le script data-loader.js qui contient les données
+    
+    // Mettre à jour currentLanguage depuis window si disponible
+    currentLanguage = window.currentLanguage || localStorage.getItem('language') || 'fr';
+    window.currentLanguage = currentLanguage;
+    
+    // Vérifier si data-loader.js est déjà chargé et a défini window.siteData
+    if (window.siteData && typeof window.siteData === 'object' && window.siteData.personal) {
+        // Si les données sont déjà disponibles, les utiliser directement
+        siteData = window.siteData;
+        if (document.documentElement) {
+            document.documentElement.lang = currentLanguage;
+        }
+        populateContent();
+        setupLanguageToggle();
+        return Promise.resolve();
+    }
+    
+    // Sinon, charger le script data-loader.js
     return new Promise((resolve, reject) => {
+        // Vérifier si le script est déjà présent dans le DOM
+        const existingScript = document.querySelector('script[src="data-loader.js"]');
+        if (existingScript) {
+            // Le script est déjà chargé, attendre un peu et vérifier les données
+            setTimeout(() => {
+                if (window.siteData && typeof window.siteData === 'object' && window.siteData.personal) {
+                    siteData = window.siteData;
+                    if (document.documentElement) {
+                        document.documentElement.lang = currentLanguage;
+                    }
+                    populateContent();
+                    setupLanguageToggle();
+                    resolve();
+                } else {
+                    // Réessayer après un délai plus long
+                    setTimeout(() => {
+                        if (window.siteData && typeof window.siteData === 'object' && window.siteData.personal) {
+                            siteData = window.siteData;
+                            if (document.documentElement) {
+                                document.documentElement.lang = currentLanguage;
+                            }
+                            populateContent();
+                            setupLanguageToggle();
+                            resolve();
+                        } else {
+                            reject(new Error('Données non disponibles dans data-loader.js après chargement'));
+                        }
+                    }, 500);
+                }
+            }, 300);
+            return;
+        }
+        
         const script = document.createElement('script');
         script.src = 'data-loader.js';
         script.onload = () => {
             console.log('data-loader.js chargé avec succès');
-            if (window.siteData) {
-                siteData = window.siteData;
-                window.siteData = siteData;
-                populateContent();
-                resolve();
-            } else {
-                reject(new Error('Données non disponibles dans data-loader.js'));
-            }
+            // Attendre un peu pour que les données soient disponibles
+            setTimeout(() => {
+                if (window.siteData && typeof window.siteData === 'object' && window.siteData.personal) {
+                    siteData = window.siteData;
+                    if (document.documentElement) {
+                        document.documentElement.lang = currentLanguage;
+                    }
+                    populateContent();
+                    setupLanguageToggle();
+                    resolve();
+                } else {
+                    reject(new Error('Données non disponibles dans data-loader.js'));
+                }
+            }, 300);
         };
         script.onerror = () => {
             console.error('Impossible de charger data-loader.js');
@@ -353,6 +424,69 @@ function animateCounter(element) {
     };
 
     updateCounter();
+}
+
+// Fonction pour configurer le toggle de langue
+function setupLanguageToggle() {
+    const langToggle = document.getElementById('langToggle');
+    const langText = document.getElementById('langText');
+    
+    if (!langToggle || !langText) {
+        console.warn('Éléments du toggle de langue non trouvés');
+        return;
+    }
+    
+    // Mettre à jour currentLanguage depuis window si disponible
+    currentLanguage = window.currentLanguage || currentLanguage;
+    
+    // Mettre à jour le texte du bouton selon la langue actuelle
+    langText.textContent = currentLanguage === 'fr' ? 'EN' : 'FR';
+    
+    // Mettre à jour l'attribut lang de la balise html
+    if (document.documentElement) {
+        document.documentElement.lang = currentLanguage;
+    }
+    
+    // Supprimer les anciens listeners en remplaçant le bouton
+    const newLangToggle = langToggle.cloneNode(true);
+    langToggle.parentNode.replaceChild(newLangToggle, langToggle);
+    
+    // Récupérer le nouveau texte après le clonage
+    const newLangText = document.getElementById('langText');
+    if (newLangText) {
+        newLangText.textContent = currentLanguage === 'fr' ? 'EN' : 'FR';
+    }
+    
+        newLangToggle.addEventListener('click', async () => {
+            // Changer la langue
+            currentLanguage = currentLanguage === 'fr' ? 'en' : 'fr';
+            localStorage.setItem('language', currentLanguage);
+            
+            // Mettre à jour window.currentLanguage pour que data-loader.js puisse l'utiliser
+            window.currentLanguage = currentLanguage;
+            
+            // Mettre à jour l'attribut lang de la balise html
+            if (document.documentElement) {
+                document.documentElement.lang = currentLanguage;
+            }
+            
+            // Si on est en mode local (file://), utiliser la fonction switchLanguage de data-loader.js
+            if (window.location.protocol === 'file:') {
+                if (window.switchLanguage) {
+                    window.switchLanguage(currentLanguage);
+                } else {
+                    // Si switchLanguage n'est pas disponible, recharger data-loader.js
+                    await loadLocalData();
+                }
+                const updatedLangText = document.getElementById('langText');
+                if (updatedLangText) {
+                    updatedLangText.textContent = currentLanguage === 'fr' ? 'EN' : 'FR';
+                }
+            } else {
+                // Sur GitHub Pages ou serveur, recharger les données avec la nouvelle langue
+                await loadContent();
+            }
+        });
 }
 
 // Charger le contenu au chargement de la page

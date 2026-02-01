@@ -1,0 +1,224 @@
+{
+  "personal": {
+    "name": "Lou Le Gall",
+    "title": "Computer Engineer",
+    "phone": "+33 6 95 88 07 10",
+    "email": "lou.le gall59@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/lou-le-gall-9017551a3/",
+    "github": "https://github.com/loulegall",
+    "cv": "cv.pdf"
+  },
+  "navigation": {
+    "menu": [
+      { "text": "About", "href": "#about" },
+      { "text": "Key Figures", "href": "#stats" },
+      { "text": "Projects", "href": "#projects" },
+      { "text": "Experience", "href": "#experiences" },
+      { "text": "Education", "href": "#formations" },
+      { "text": "Contact", "href": "#contact" },
+      { "text": "Download CV", "href": "cv.pdf", "download": true }
+    ]
+  },
+  "quiz": {
+    "button": "Test your knowledge about me!",
+    "title": "Quiz about Lou Le Gall",
+    "questions": [
+      {
+        "question": "In which country did Lou complete her final internship?",
+        "answers": ["France", "Ireland", "Spain", "Germany"],
+        "correct": 1
+      },
+      {
+        "question": "Which mobile framework did Lou use for her research project?",
+        "answers": ["Flutter", "React Native", "Ionic", "Xamarin"],
+        "correct": 1
+      },
+      {
+        "question": "How many years of experience does Lou have?",
+        "answers": ["2 years", "3 years", "4 years", "5 years"],
+        "correct": 2
+      },
+      {
+        "question": "In which city did Lou work at NextCog?",
+        "answers": ["Paris", "Lyon", "Montpellier", "Toulouse"],
+        "correct": 2
+      },
+      {
+        "question": "Which programming language did Lou use to create the after-sales interface?",
+        "answers": ["Java", "Python", "PHP", "Ruby"],
+        "correct": 1
+      }
+    ],
+    "messages": {
+      "correct": "✅ Correct answer!",
+      "incorrect": "❌ Wrong answer. The correct answer was: {answer}",
+      "final": {
+        "title": "Quiz completed!",
+        "perfect": "🎉 Perfect! You know Lou very well!",
+        "excellent": "👏 Excellent! You know Lou well!",
+        "good": "👍 Well done! You know some things about Lou.",
+        "continue": "💪 Keep exploring the site to get to know Lou better!"
+      },
+      "buttons": {
+        "next": "Next question",
+        "restart": "Restart"
+      }
+    }
+  },
+  "sections": {
+    "about": {
+      "title": "ABOUT",
+      "contactInfo": [
+        { "icon": "🖥️", "text": "Computer Engineer" },
+        { "icon": "📞", "text": "+33 6 95 88 07 10", "link": "tel:+33695880710" },
+        { "icon": "✉️", "text": "lou.le gall59@gmail.com", "link": "mailto:lou.le gall59@gmail.com" },
+        { "icon": "🔗", "text": "LinkedIn Profile", "link": "https://www.linkedin.com/in/lou-le-gall-9017551a3/" },
+        { "icon": "🐱", "text": "GitHub Profile", "link": "https://github.com/loulegall" }
+      ]
+    },
+    "skills": [
+      {
+        "icon": "⚡",
+        "title": "Methodologies & Management",
+        "items": [
+          "Agile Methods: SCRUM, Kanban",
+          "Group project management (E-health)",
+          "Entrepreneurial project",
+          "Pitching and corporate communication",
+          "Business model canvas, Design Thinking",
+          "Project management tools (Trello, Notion, GitHub)"
+        ]
+      },
+      {
+        "icon": "💻",
+        "title": "Development",
+        "items": [
+          "Languages: HTML, CSS, Python, JavaScript",
+          "Frameworks: React, React Native",
+          "WordPress and Elementor",
+          "BackEnd: REST API, Database"
+        ]
+      },
+      {
+        "icon": "☁️",
+        "title": "Infrastructure & DevOps",
+        "items": [
+          "Cloud: OpenStack, Azure, GCP",
+          "Docker, CI/CD",
+          "Development of innovative products/services"
+        ]
+      }
+    ],
+    "stats": {
+      "title": "KEY FIGURES",
+      "items": [
+        { "value": 4, "label": "Years of experience" },
+        { "value": 10, "label": "Projects completed" },
+        { "value": 3, "label": "Companies" },
+        { "value": 2, "label": "Countries (FR, IE)" }
+      ]
+    },
+    "projects": {
+      "title": "PROJECTS",
+      "items": [
+        {
+          "icon": "📱",
+          "title": "React Native Mobile Application",
+          "description": "Development of a mobile application for a university research project in Ireland. Intuitive interface and advanced features for data collection.",
+          "tags": ["React Native", "Mobile", "Research"]
+        },
+        {
+          "icon": "🌐",
+          "title": "Agile Web Development",
+          "description": "Creation and maintenance of websites for various clients using an agile approach. Rapid adaptation to needs and delivery of customized solutions.",
+          "tags": ["HTML/CSS", "JavaScript", "WordPress"]
+        },
+        {
+          "icon": "⚙️",
+          "title": "Django After-Sales Interface",
+          "description": "Design and development of a complete interface for the after-sales service of an industrial company. Process optimization and efficiency improvement.",
+          "tags": ["Python", "Django", "Backend"]
+        },
+        {
+          "icon": "💼",
+          "title": "Entrepreneurial Project",
+          "description": "Development of an innovative project in the E-health field. Business model canvas, design thinking and presentation pitch.",
+          "tags": ["Entrepreneurship", "E-health", "Innovation"]
+        }
+      ]
+    },
+    "experiences": {
+      "title": "EXPERIENCE",
+      "items": [
+        {
+          "title": "FRONTEND DEVELOPER",
+          "type": "Final internship",
+          "company": "UCC (University College Cork), Cork (Ireland)",
+          "date": "February 2024 - July 2024",
+          "description": "Development of a React Native mobile application for a university research project. Collaboration with an international team and implementation of complex features for data collection and analysis."
+        },
+        {
+          "title": "DEVELOPER",
+          "type": "Apprenticeship",
+          "company": "NextCog, Montpellier (France)",
+          "date": "September 2022 - January 2024",
+          "description": "Autonomy and responsibility in task management as well as in initiating new ideas. Development of innovative solutions and active participation in technical decisions."
+        },
+        {
+          "title": "WEB DEVELOPER",
+          "type": "Apprenticeship",
+          "company": "Demi-Sel, Quimper (France)",
+          "date": "September 2021 - September 2022",
+          "description": "Agile development to meet client demands for website content and functionality. Multiple project management and deadline compliance."
+        },
+        {
+          "title": "WEB DEVELOPER",
+          "type": "Final internship",
+          "company": "Groupe Asten, Brest (France)",
+          "date": "April 2021 - June 2021",
+          "description": "Creation of a complete interface for the company's after-sales service using Python and the Django framework. Significant improvement in internal processes."
+        }
+      ]
+    },
+    "formations": {
+      "title": "EDUCATION",
+      "items": [
+        {
+          "icon": "🎓",
+          "title": "Master 2 - MAE Entrepreneurship and Innovation Track",
+          "school": "IGR IAE (University School of Management)",
+          "location": "Rennes (France) - 2024",
+          "description": "Project management, creativity, innovative projects, entrepreneurship. Complete training in management and innovation with focus on business creation."
+        },
+        {
+          "icon": "⚙️",
+          "title": "ENSAT - Computer Science Engineering by Apprenticeship",
+          "school": "ENSAT (National School of Applied Sciences and Technology)",
+          "location": "Lannion (France) - 2021 to 2024",
+          "description": "Web development, cloud computing, data science, AI. Engineering training through apprenticeship combining theory and professional practice."
+        },
+        {
+          "icon": "📡",
+          "title": "DUT - Networks and Telecommunications",
+          "school": "IUT DIJON",
+          "location": "Auxerre (France) - 2019 to 2021",
+          "description": "Complete technical training in networks and telecommunications. Solid foundations in network infrastructure and communication systems."
+        }
+      ]
+    },
+    "contact": {
+      "title": "CONTACT",
+      "form": {
+        "emailLabel": "Email:",
+        "messageLabel": "Message:",
+        "submitButton": "Send",
+        "successMessage": "Message sent successfully!",
+        "errorMessage": "Error sending message. Please try again."
+      }
+    }
+  },
+  "footer": {
+    "text": "Developed with ❤️ by Lou Le Gall",
+    "hosting": "Hosted by GitHub"
+  }
+}

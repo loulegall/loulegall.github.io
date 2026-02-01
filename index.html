@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" id="htmlLang">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,21 +14,16 @@
     <script src="script.js" defer></script>
     <script src="quiz.js" defer></script>
     <!-- Script de secours pour le développement local -->
-    <script>
-        // Si on est en mode local et que data-loader.js existe, le charger
-        if (window.location.protocol === 'file:') {
-            const fallbackScript = document.createElement('script');
-            fallbackScript.src = 'data-loader.js';
-            fallbackScript.onload = () => {
-                console.log('data-loader.js chargé en mode local');
-            };
-            document.head.appendChild(fallbackScript);
-        }
-    </script>
+    <!-- Note: data-loader.js sera chargé par content-loader.js si nécessaire -->
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
     <header>
+        <div class="language-toggle">
+            <button id="langToggle" class="lang-button" aria-label="Switch language">
+                <span id="langText">EN</span>
+            </button>
+        </div>
         <div class="menu-icon" id="menuToggle">
             <div class="bar"></div>
             <div class="bar"></div>
